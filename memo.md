@@ -94,3 +94,32 @@ void find(T &container, int value)
     typename T::iterator it;
 }
 ```
+
+## stack ##
+Stack はコンテナアダプタである。コンテナの一方から要素が挿入され、挿入された側から要素を取り出す。
+stack は所定のメンバ関数を持つコンテナのオブジェクトを内部実装として用いており、標準のコンテナ、もしくは独自に実装したコンテナを指定することができる。
+このコンテナに必要な要件は以下のメンバ関数を持つことである。
+- back()
+- push_back()
+- pop_back()
+
+この要件を満たすものとしては vector, deque, list があり、デフォルトでは deque が使用される。
+stack は 2 つのテンプレートパラメータを持つ。
+T: 格納される要素の型
+Container : 要素へのアクセス・保存に用いる内部実装のコンテナクラス
+```cpp
+namespace std {
+    template <class T, class Container = deque<T>>
+    class stack;
+}
+```
+メンバ変数として c というメンバ変数を持つ。この変数の方は Container 型であり、実体としてはこの Container に値を保持する。
+
+## stack のメンバ関数 ##
+|関数名|説明|
+|-----|---|
+|top|次の要素へアクセスする|
+|empty|要素がからであるかを確認する|
+|size|要素数を取得する|
+|push|要素を追加する|
+|pop| 次の要素を削除する。
