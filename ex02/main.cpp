@@ -83,11 +83,9 @@ int main()
 
     std::cout << "elements: ";
 
-    MutantStack<int, std::list<int> >::iterator listIt
-        = listMstack.begin();
+    MutantStack<int, std::list<int> >::iterator listIt = listMstack.begin();
 
-    MutantStack<int, std::list<int> >::iterator listIte
-        = listMstack.end();
+    MutantStack<int, std::list<int> >::iterator listIte = listMstack.end();
 
     while (listIt != listIte)
     {
