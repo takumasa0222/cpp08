@@ -31,7 +31,6 @@ void Span::addNumbers(T first, T last)
 
     if (values.size() > remaining)
         throw std::length_error("Span capacity exceeded");
-
     _numbers.insert(_numbers.end(), values.begin(), values.end());
 }
 #endif

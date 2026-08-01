@@ -23,6 +23,7 @@
 |list | 双方向連結リスト| c++98|リスト内の任意の位置での挿入と削除が頻繁に行われる場合に適しています。ランダムアクセスはサポートされていませんが、イテレータを使った要素へのアクセスが可能です。|
 
 
+
 ### 連想コンテナ ###
 連想コンテナは高速に (O(log n) の計算量で) 検索可能なソート済みのデータ構造を実装。
 キーを使って要素を検索する
@@ -55,3 +56,41 @@ reference:
 <https://ja.cppreference.com/cpp/container>
 
 <https://qiita.com/bearl27/items/3ddf0cd4bf9f0f2a0a33>
+
+## コンテナクラスで共通する関数 ##
+|関数名 | 概要 | note |
+|------|------|------|
+|begin|先頭要素のイテレータを取得||
+|end|末尾要素の次の要素のイテレータを取得||
+|empty|コンテナが空か否か||
+|size|コンテナのサイズを取得||
+|max_size|コンテナが確保できる最大容量を取得||
+|swap|コンテナオブジェクト同士の中身を入れ替える||
+|clear|コンテナを空にする||
+|insert|任意の位置に要素を挿入。|コンテナクラスによっては位置の指定は強制できない。array 以外のコンテナクラスで共通|
+|emplace|要素を構築して挿入。|コンテナクラスによっては位置の指定は強制できない。array 以外のコンテナクラスで共通|
+|erase|指定の要素を削除する|array 以外のコンテナクラスで共通|
+
+## iterator の使用方法 ##
+```
+std::vector<int>::iterator it;
+it = numbers.begin();
+
+for (std::vector<int>::iterator it = numbers.begin(); it != numbers.end(); it++) {
+    std::cout << *it << std::endl;
+}
+```
+
+## typename T::iterator ##
+テンプレート内でコンテナのイテレータ型を使用する場合、次の書き方をする必要がある。
+```cpp
+typename T::iterator it;
+```
+具体的には下記のように記載する。
+```
+template <typename T>
+void find(T &container, int value)
+{
+    typename T::iterator it;
+}
+```
